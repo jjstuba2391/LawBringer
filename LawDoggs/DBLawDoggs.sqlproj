@@ -68,5 +68,7 @@
     <Build Include="dbo\Tables\Classroom.sql" />
     <Build Include="dbo\Tables\CourseStudent.sql" />
     <Build Include="dbo\Tables\ClassroomCourse.sql" />
+    <Build Include="dbo\Tables\HelpType.sql" />
+    <Build Include="dbo\Tables\Lawyer.sql" />
   </ItemGroup>
 </Project>
