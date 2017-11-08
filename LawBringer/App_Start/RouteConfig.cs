@@ -11,7 +11,9 @@ namespace LawBringer
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
-            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");//bypass any request for .axd file. Handler for previous part of .net Network
+
+            //99.99% of the time, Okay with just leaving this route
 
             routes.MapRoute(
                 name: "Default",

@@ -1,0 +1,18 @@
+﻿@model IEnumerable<LawBringer.Models.Lawyer>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>Lawyers</h2>
+<div class="row">
+    @foreach (var lawyer in Model)
+    {
+        <div class="col-xs-4">
+            <div class="well">
+                <h2>@lawyer.Name</h2>
+                <img class=" img-responsive" src="@lawyer.Image" />
+            </div>
+            @Html.ActionLink("Find Out more", "Index", new { ID = lawyer.ID })
+        </div>
+    }
+</div>
