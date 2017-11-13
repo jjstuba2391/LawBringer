@@ -149,6 +149,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LawyerController.cs" />
     <Compile Include="Controllers\ReceiptController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -156,6 +157,7 @@
     <Compile Include="Models\CheckoutDetails.cs" />
     <Compile Include="Models\Lawyer.cs" />
     <Compile Include="Models\Receipt.cs" />
+    <Compile Include="Models\SalesReportsModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -216,6 +218,7 @@
     <Content Include="Views\Checkout\Index.cshtml" />
     <Content Include="Views\Receipt\Index.cshtml" />
     <Content Include="Views\Lawyer\List.cshtml" />
+    <Content Include="Views\Reports\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

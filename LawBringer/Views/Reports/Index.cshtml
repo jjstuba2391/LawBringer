@@ -1,0 +1,48 @@
+﻿@model LawBringer.Models.SalesReportModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1>This is a report page</h1>
+@using (Html.BeginForm())
+{
+    <input type="submit" value="Get Report" />
+    @Html.DropDownListFor(m => m.SelectedState, Model.States.Select(x => new SelectListItem { Value = x, Text = x }))
+    foreach (var topSale in Model.TopSalesByDollar)
+    {
+        <table >
+            <thead>
+                <tr>
+                    <th>Product ID</th>
+
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@topSale.ProductID</td>
+                    <td>@topSale.Price</td>
+                </tr>
+            </tbody>
+        </table>
+    }
+    <br />
+    foreach (var topSale in Model.TopSalesByQuantity)
+    {
+        <table>
+            <thead>
+                <tr>
+                    <th>Product ID</th>
+                    
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@topSale.ProductID</td>
+                    <td>@topSale.Quantity</td>
+                </tr>
+
+            </tbody>
+        </table>
+    }
+}
