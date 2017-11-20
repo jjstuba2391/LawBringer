@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LawBringer.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,26 +9,33 @@ namespace LawBringer.Controllers
 {
     public class CartController : Controller
     {
+        protected DBLawDoggsEntities db = new DBLawDoggsEntities();
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
 
         // GET: Cart
         public ActionResult Index()
         {
-            var cart = Models.Cart.BuildCart(Request);
+            Guid cartID = Guid.Parse(Request.Cookies["CartID"].Value);
+            
 
-            return View(cart);
+            return View(db.Carts.Find(cartID));
         }
         // POST: Cart
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Index(Models.Cart model)
         {
-            model.Tax = model.Lawyers[0].Price * .1025m;
-            model.ServiceCharge = model.Lawyers[0].Price * .10m;
-            model.Total = model.Lawyers[0].Price + model.Tax + model.ServiceCharge;
-
-            return View(model); 
+            var cart = db.Carts.Find(model.ID);
+            db.SaveChanges();
+            return View(cart);
         }
-
-        
     }
 }

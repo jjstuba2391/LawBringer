@@ -24,6 +24,15 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     <li>@Html.ActionLink("List", "List", "Lawyer")</li>
+                    @if(User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Sign Out as " + User.Identity.Name, "SignOut" , "Account")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Register", "Register", "Account")</li>
+                        <li> @Html.ActionLink("Sign In", "SignIn", "Account")</li>
+                    }
                 </ul>
             </div>
         </div>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d78f0803158c4fcaab43c91b63052ecc" Name="Diagram1">
+        <EntityTypeShape EntityType="DBLawDoggsModel.AspNetRole" Width="1.5" PointX="2.75" PointY="2.5" />
+        <EntityTypeShape EntityType="DBLawDoggsModel.AspNetUserClaim" Width="1.5" PointX="7.25" PointY="3.625" />
+        <EntityTypeShape EntityType="DBLawDoggsModel.AspNetUserLogin" Width="1.5" PointX="7.25" PointY="1" />
+        <EntityTypeShape EntityType="DBLawDoggsModel.AspNetUser" Width="1.5" PointX="5" PointY="1.375" />
+        <EntityTypeShape EntityType="DBLawDoggsModel.Cart" Width="1.5" PointX="8.25" PointY="10.25" />
+        <EntityTypeShape EntityType="DBLawDoggsModel.HelpType" Width="1.5" PointX="0.75" PointY="6" />
+        <EntityTypeShape EntityType="DBLawDoggsModel.Lawyer" Width="1.5" PointX="3" PointY="14.5" />
+        <EntityTypeShape EntityType="DBLawDoggsModel.LawyerTimeSlot" Width="1.5" PointX="5.25" PointY="15.125" />
+        <EntityTypeShape EntityType="DBLawDoggsModel.Order" Width="1.5" PointX="5.25" PointY="9.375" />
+        <AssociationConnector Association="DBLawDoggsModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="DBLawDoggsModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="DBLawDoggsModel.FK_Cart_HelpType" />
+        <AssociationConnector Association="DBLawDoggsModel.FK_Cart_Lawyer" />
+        <AssociationConnector Association="DBLawDoggsModel.FK_Order_HelpType" />
+        <AssociationConnector Association="DBLawDoggsModel.FK_LawyerTimeSlot_Lawyer" />
+        <AssociationConnector Association="DBLawDoggsModel.FK_Order_Lawyer" />
+        <AssociationConnector Association="DBLawDoggsModel.AspNetUserRoles" />
+        <AssociationConnector Association="DBLawDoggsModel.LawyerHelpType" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

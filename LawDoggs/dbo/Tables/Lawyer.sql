@@ -5,8 +5,6 @@
 	[City] NVARCHAR(100),
 	[Price] MONEY,
 	[Image] NVARCHAR(100),
-	[HelpTypeID] INT, 
-	[TimeSlot] DateTime,
-	CONSTRAINT FK_Lawyer_HelpType FOREIGN KEY (HelpTypeID) REFERENCES HelpType(ID)
+    CONSTRAINT [PK_Lawyer] PRIMARY KEY ([Id])
 	
 )

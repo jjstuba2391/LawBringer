@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="c088b2a7-b06a-46ae-aaa9-c6a5b090ed0a" ChangeDateTime="11/14/2017 17:21:37">
+    <Property Name="ElementName" Value="[dbo].[CartLawyer].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CartLawyer]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CartId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="db84a2fa-9b75-4728-930a-b3ae5ef3152f" ChangeDateTime="11/14/2017 19:39:47">
+    <Property Name="ElementName" Value="[dbo].[Order].[SubTotal]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Order]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Total" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="6c27897d-7f83-4b05-ad1b-c5ccd1c8d5f0" ChangeDateTime="11/14/2017 19:45:05">
+    <Property Name="ElementName" Value="[dbo].[Order].[Total]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Order]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SubTotal" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c2576f3b-ceb4-453b-aeed-6262a639a1c2" ChangeDateTime="11/14/2017 20:40:50">
+    <Property Name="ElementName" Value="[dbo].[Order].[SubTotal]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Order]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Total" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="3d3bdfeb-efb3-4c1e-8e7f-2dfaa9f5bf08" ChangeDateTime="11/17/2017 16:55:34">
+    <Property Name="ElementName" Value="[dbo].[LawyerTimeSlot].[TimeSlotId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[LawyerTimeSlot]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DateTime" />
+  </Operation>
+</Operations>

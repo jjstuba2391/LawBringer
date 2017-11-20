@@ -1,0 +1,427 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="JakesTestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Classroom">
+          <Key>
+            <PropertyRef Name="RoomNumber" />
+          </Key>
+          <Property Name="RoomNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClassroomCourse">
+          <Key>
+            <PropertyRef Name="ClassroomRoomNumber" />
+            <PropertyRef Name="CourseName" />
+          </Key>
+          <Property Name="ClassroomRoomNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="CourseName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DayOfWeek" Type="nvarchar" MaxLength="1" />
+          <Property Name="Time" Type="time" Precision="2" />
+        </EntityType>
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="CourseStudent">
+          <Key>
+            <PropertyRef Name="StudentID" />
+            <PropertyRef Name="CourseName" />
+          </Key>
+          <Property Name="StudentID" Type="int" Nullable="false" />
+          <Property Name="CourseName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Grade" Type="nvarchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="HelpType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="ntext" />
+          <Property Name="StandardPrice" Type="money" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'JakesTest.dbo.Lawyer' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Lawyer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="City" Type="nvarchar" MaxLength="100" />
+          <Property Name="Price" Type="money" />
+          <Property Name="Image" Type="nvarchar" MaxLength="100" />
+          <Property Name="HelpTypeID" Type="int" />
+          <Property Name="TimeSlot" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_ClassroomCourse_Classroom">
+          <End Role="Classroom" Type="Self.Classroom" Multiplicity="1" />
+          <End Role="ClassroomCourse" Type="Self.ClassroomCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classroom">
+              <PropertyRef Name="RoomNumber" />
+            </Principal>
+            <Dependent Role="ClassroomCourse">
+              <PropertyRef Name="ClassroomRoomNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClassroomCourse_Course">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="ClassroomCourse" Type="Self.ClassroomCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="ClassroomCourse">
+              <PropertyRef Name="CourseName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CourseStudent_Course">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="CourseStudent" Type="Self.CourseStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="CourseStudent">
+              <PropertyRef Name="CourseName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CourseStudent_Student">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="CourseStudent" Type="Self.CourseStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CourseStudent">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lawyer_HelpType">
+          <End Role="HelpType" Type="Self.HelpType" Multiplicity="0..1" />
+          <End Role="Lawyer" Type="Self.Lawyer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HelpType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Lawyer">
+              <PropertyRef Name="HelpTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="JakesTestModelStoreContainer">
+          <EntitySet Name="Classroom" EntityType="Self.Classroom" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClassroomCourse" EntityType="Self.ClassroomCourse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CourseStudent" EntityType="Self.CourseStudent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HelpType" EntityType="Self.HelpType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lawyer" EntityType="Self.Lawyer" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Lawyer].[Id] AS [Id], 
+    [Lawyer].[Name] AS [Name], 
+    [Lawyer].[City] AS [City], 
+    [Lawyer].[Price] AS [Price], 
+    [Lawyer].[Image] AS [Image], 
+    [Lawyer].[HelpTypeID] AS [HelpTypeID], 
+    [Lawyer].[TimeSlot] AS [TimeSlot]
+    FROM [dbo].[Lawyer] AS [Lawyer]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_ClassroomCourse_Classroom" Association="Self.FK_ClassroomCourse_Classroom">
+            <End Role="Classroom" EntitySet="Classroom" />
+            <End Role="ClassroomCourse" EntitySet="ClassroomCourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClassroomCourse_Course" Association="Self.FK_ClassroomCourse_Course">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="ClassroomCourse" EntitySet="ClassroomCourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CourseStudent_Course" Association="Self.FK_CourseStudent_Course">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="CourseStudent" EntitySet="CourseStudent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CourseStudent_Student" Association="Self.FK_CourseStudent_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="CourseStudent" EntitySet="CourseStudent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lawyer_HelpType" Association="Self.FK_Lawyer_HelpType">
+            <End Role="HelpType" EntitySet="HelpType" />
+            <End Role="Lawyer" EntitySet="Lawyer" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="JakesTestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Classroom">
+          <Key>
+            <PropertyRef Name="RoomNumber" />
+          </Key>
+          <Property Name="RoomNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ClassroomCourses" Relationship="Self.FK_ClassroomCourse_Classroom" FromRole="Classroom" ToRole="ClassroomCourse" />
+        </EntityType>
+        <EntityType Name="ClassroomCourse">
+          <Key>
+            <PropertyRef Name="ClassroomRoomNumber" />
+            <PropertyRef Name="CourseName" />
+          </Key>
+          <Property Name="ClassroomRoomNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CourseName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DayOfWeek" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="Time" Type="Time" Precision="2" />
+          <NavigationProperty Name="Classroom" Relationship="Self.FK_ClassroomCourse_Classroom" FromRole="ClassroomCourse" ToRole="Classroom" />
+          <NavigationProperty Name="Course" Relationship="Self.FK_ClassroomCourse_Course" FromRole="ClassroomCourse" ToRole="Course" />
+        </EntityType>
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ClassroomCourses" Relationship="Self.FK_ClassroomCourse_Course" FromRole="Course" ToRole="ClassroomCourse" />
+          <NavigationProperty Name="CourseStudents" Relationship="Self.FK_CourseStudent_Course" FromRole="Course" ToRole="CourseStudent" />
+        </EntityType>
+        <EntityType Name="CourseStudent">
+          <Key>
+            <PropertyRef Name="StudentID" />
+            <PropertyRef Name="CourseName" />
+          </Key>
+          <Property Name="StudentID" Type="Int32" Nullable="false" />
+          <Property Name="CourseName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Grade" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Course" Relationship="Self.FK_CourseStudent_Course" FromRole="CourseStudent" ToRole="Course" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_CourseStudent_Student" FromRole="CourseStudent" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="HelpType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StandardPrice" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Lawyers" Relationship="Self.FK_Lawyer_HelpType" FromRole="HelpType" ToRole="Lawyer" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CourseStudents" Relationship="Self.FK_CourseStudent_Student" FromRole="Student" ToRole="CourseStudent" />
+        </EntityType>
+        <EntityType Name="Lawyer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="HelpTypeID" Type="Int32" />
+          <Property Name="TimeSlot" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="HelpType" Relationship="Self.FK_Lawyer_HelpType" FromRole="Lawyer" ToRole="HelpType" />
+        </EntityType>
+        <Association Name="FK_ClassroomCourse_Classroom">
+          <End Role="Classroom" Type="Self.Classroom" Multiplicity="1" />
+          <End Role="ClassroomCourse" Type="Self.ClassroomCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classroom">
+              <PropertyRef Name="RoomNumber" />
+            </Principal>
+            <Dependent Role="ClassroomCourse">
+              <PropertyRef Name="ClassroomRoomNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClassroomCourse_Course">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="ClassroomCourse" Type="Self.ClassroomCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="ClassroomCourse">
+              <PropertyRef Name="CourseName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CourseStudent_Course">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="CourseStudent" Type="Self.CourseStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="CourseStudent">
+              <PropertyRef Name="CourseName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CourseStudent_Student">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="CourseStudent" Type="Self.CourseStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CourseStudent">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lawyer_HelpType">
+          <End Role="HelpType" Type="Self.HelpType" Multiplicity="0..1" />
+          <End Role="Lawyer" Type="Self.Lawyer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HelpType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Lawyer">
+              <PropertyRef Name="HelpTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="JakesTestEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Classrooms" EntityType="Self.Classroom" />
+          <EntitySet Name="ClassroomCourses" EntityType="Self.ClassroomCourse" />
+          <EntitySet Name="Courses" EntityType="Self.Course" />
+          <EntitySet Name="CourseStudents" EntityType="Self.CourseStudent" />
+          <EntitySet Name="HelpTypes" EntityType="Self.HelpType" />
+          <EntitySet Name="Students" EntityType="Self.Student" />
+          <EntitySet Name="Lawyers" EntityType="Self.Lawyer" />
+          <AssociationSet Name="FK_ClassroomCourse_Classroom" Association="Self.FK_ClassroomCourse_Classroom">
+            <End Role="Classroom" EntitySet="Classrooms" />
+            <End Role="ClassroomCourse" EntitySet="ClassroomCourses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClassroomCourse_Course" Association="Self.FK_ClassroomCourse_Course">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="ClassroomCourse" EntitySet="ClassroomCourses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CourseStudent_Course" Association="Self.FK_CourseStudent_Course">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="CourseStudent" EntitySet="CourseStudents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CourseStudent_Student" Association="Self.FK_CourseStudent_Student">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="CourseStudent" EntitySet="CourseStudents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lawyer_HelpType" Association="Self.FK_Lawyer_HelpType">
+            <End Role="HelpType" EntitySet="HelpTypes" />
+            <End Role="Lawyer" EntitySet="Lawyers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="JakesTestModelStoreContainer" CdmEntityContainer="JakesTestEntities1">
+          <EntitySetMapping Name="Classrooms">
+            <EntityTypeMapping TypeName="JakesTestModel.Classroom">
+              <MappingFragment StoreEntitySet="Classroom">
+                <ScalarProperty Name="RoomNumber" ColumnName="RoomNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClassroomCourses">
+            <EntityTypeMapping TypeName="JakesTestModel.ClassroomCourse">
+              <MappingFragment StoreEntitySet="ClassroomCourse">
+                <ScalarProperty Name="ClassroomRoomNumber" ColumnName="ClassroomRoomNumber" />
+                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+                <ScalarProperty Name="DayOfWeek" ColumnName="DayOfWeek" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Courses">
+            <EntityTypeMapping TypeName="JakesTestModel.Course">
+              <MappingFragment StoreEntitySet="Course">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CourseStudents">
+            <EntityTypeMapping TypeName="JakesTestModel.CourseStudent">
+              <MappingFragment StoreEntitySet="CourseStudent">
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HelpTypes">
+            <EntityTypeMapping TypeName="JakesTestModel.HelpType">
+              <MappingFragment StoreEntitySet="HelpType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="StandardPrice" ColumnName="StandardPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="JakesTestModel.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lawyers">
+            <EntityTypeMapping TypeName="JakesTestModel.Lawyer">
+              <MappingFragment StoreEntitySet="Lawyer">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="HelpTypeID" ColumnName="HelpTypeID" />
+                <ScalarProperty Name="TimeSlot" ColumnName="TimeSlot" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

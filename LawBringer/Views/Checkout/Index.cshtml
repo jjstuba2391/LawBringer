@@ -11,56 +11,56 @@
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Price</th>
                     <th>City</th>
+                    <th>Base Price</th>
+                    <th>Law Type</th>
+                    <th>Selected Day</th>
                 </tr>
             </thead>
             <tbody>
-                @for (var i = 0; i < Model.CurrentCart.Lawyers.Length; i++)
-            {
-                    <tr>
-                        <td>
-                            @Model.CurrentCart.Lawyers[i].Name
+                <tr>
+                    <td>
+                        @Model.CurrentCart.Lawyer.Name
+                    </td>
+                    <td>
+                        @Model.CurrentCart.Lawyer.City
 
-                        </td>
-                        <td>
-                            @Model.CurrentCart.Lawyers[i].City
-
-                        </td>
-                        <td>
-                            @Model.CurrentCart.Lawyers[i].Price.ToString("C")
-
-                        </td>
-                    </tr>
-                }
+                    </td>
+                    <td>
+                        @((Model.CurrentCart.Lawyer.Price ?? 0).ToString("C"))
+                    </td>
+                    <td>
+                        @Model.CurrentCart.HelpType.Description
+                    </td>
+                    <td>
+                        @Model.CurrentCart.Day.ToShortDateString()
+                    </td>
+                </tr>
             </tbody>
             <tfoot>
                 <tr>
-                    <th colspan="3">Tax</th>
-                    <th>@Model.CurrentCart.Tax.ToString("C")</th>
-                </tr>
-                <tr>
-                    <th colspan="3">Service Charge</th>
-                    <th>@Model.CurrentCart.ServiceCharge.ToString("C")</th>
-                </tr>
-                <tr>
-                    <th colspan="3"> Total</th>
-                    <th>@Model.CurrentCart.Total.ToString("C")</th>
+                   @*<th colspan="3">Tax</th>
+                              <th>@Tax.ToString("C")</th>
+                        </tr>
+                        <tr>
+                            <th colspan="3">Service Charge</th>
+                            <th>@ServiceCharge.ToString("C")</th>
+                        </tr>
+                        <tr>
+                            <th colspan="3"> Total</th>
+                           <th>@Total.ToString("C")</th>*@
                 </tr>
             </tfoot>
         </table>
     </div>
     <div class="col-xs-12 col-sm-6">
         @using (Html.BeginForm())
-            {
-            @*<div class="alert alert-danger">
-                @Html.ValidationSummary(false)
-            </div>*@
-                <div class="form-group">
-                    @Html.LabelFor(m => m.ContactName, new { @class = "control-label" })
-                    @Html.TextBoxFor(m => m.ContactName, new { @class = "form-control", placeholder = "Your Name" })
-                    @Html.ValidationMessageFor(m => m.ContactName)
-                </div>
+          {          
+            <div class="form-group">
+                @Html.LabelFor(m => m.ContactName, new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.ContactName, new { @class = "form-control", placeholder = "Your Name" })
+                @Html.ValidationMessageFor(m => m.ContactName)
+            </div>
 
                 <div class="form-group">
                     @Html.LabelFor(m => m.ContactEmail, new { @class = "control-label" })
@@ -91,9 +91,8 @@
                     @Html.TextBoxFor(m => m.ShippingPostalCode, new { @class = "form-control", placeholder = "Zip Code" })
                     @Html.ValidationMessageFor(m => m.ShippingPostalCode)
                 </div>
-
-                @Html.ActionLink("Receipt", "Index", "Receipt", null, new { @class = "btn btn-primary" })
-                 //<input type="submit" class="btn btn-primary" />
+                             
+                <input type="submit" class="btn btn-primary" />
         }
     </div>
 </div>

@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Index";
 }
+
 <div class="row">
     <div class="col-xs-12 col-sm-4">
         <img class=" img-responsive" src="@Model.Image" />
@@ -10,23 +11,54 @@
         <div class="well">
             <h2>@Model.Name</h2>
             <p>@Model.City</p>
-            <p>@Model.Price.ToString("C")</p>
+            <p>@((Model.Price ?? 0).ToString("C"))</p>
+            @using (Html.BeginForm("Index", "Lawyer", FormMethod.Post, new { @class = "myClass" }))
+            {
+                @Html.HiddenFor(m => m.Name)
+                @Html.HiddenFor(m => m.City)
+                @Html.HiddenFor(m => m.Price)
+                <div class="form-group">
+                    <label for="HelpType">What do you need help with?</label>
+                    @Html.DropDownList("HelpType", Model.HelpTypes.Select(x => new SelectListItem { Text = x.Description + " " + (x.StandardPrice ?? 0).ToString("C"), Value = x.Id.ToString() }), new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label for="DaySelected">What day do you need help?</label>
+                    <div class="input-group date">
+                        <input type="text" name="DaySelected" id="DaySelected" class="form-control">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-th"></span>
+                        </div>
+                    </div>
+
+                </div>
+                <div>
+                    <input type="submit" class="btn btn-default" value="Order your Lawyer" />
+                </div>
+            }
         </div>
     </div>
-    @using (Html.BeginForm("Index", "Lawyer", FormMethod.Post, new { @class = "myClass" }))
-    {
-             @Html.HiddenFor(m => m.Name)
-             @Html.HiddenFor(m => m.City)
-             @Html.HiddenFor(m => m.Price)
-        <div class="form-group">
-            @Html.LabelFor(m => m.HelpType, new { @class = "control-label" })
-            @Html.DropDownListFor(m => m.HelpType, Model.AvailableHelpTypes.Select(x => new SelectListItem { Text = x, Value = x }))
-            @Html.LabelFor(m => m.TimeSlot, new { @class = "control-label" })
-            @Html.DropDownListFor(m => m.TimeSlot, Model.AvailableDays.Select(x => new SelectListItem { Text = x.ToShortDateString(), Value = x.ToString() }))
-        </div>
-        <div>
-            <input type="submit" class="btn btn-default" value="Order your Lawyer" />
-        </div>
-    }
-    </div>
+    
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+        function checkDate(dt) {
+            var formattedDate = (dt.getMonth() + 1) + "/" + dt.getDate() + "/" + dt.getFullYear();
+
+            console.log(formattedDate);
+            return [@Html.Raw(string.Join(",", Model.LawyerTimeSlots.Select(x => "'" + x.DateTime.ToShortDateString() + "'")))].indexOf(formattedDate) >= 0;
+        }
+
+
+        var date = new Date();
+        var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+        $("#DaySelected").datepicker({
+            startDate: '-0d',
+            minDate: today,
+            daysOfWeekDisabled: '06',
+            beforeShowDay: checkDate
+        })
+
+    </script>    
+}
 

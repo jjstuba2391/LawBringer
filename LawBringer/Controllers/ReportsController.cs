@@ -48,7 +48,11 @@ namespace LawBringer.Controllers
                 {
                     while (reader.Read())
                     {
-                        TopSalesByDollar.Add(new TopSaleByDollar { ProductID = reader.GetInt32(0), Price = reader.GetDecimal(1) } );
+                        TopSalesByDollar.Add(new TopSaleByDollar
+                        {
+                            ProductID = reader.GetInt32(0),
+                            Price = reader.GetDecimal(1)
+                        });
                     }
                 }
 
@@ -64,7 +68,11 @@ namespace LawBringer.Controllers
 
                     while (reader.Read())
                     {
-                        TopSalesByQuantity.Add(new TopSaleByQuantity {  ProductID = reader.GetInt32(0), Quantity = reader.GetInt32(1)  }  );
+                        TopSalesByQuantity.Add(new TopSaleByQuantity
+                        {
+                            ProductID = reader.GetInt32(0),
+                            Quantity = reader.GetInt32(1)
+                        });
                     }
                 }
 

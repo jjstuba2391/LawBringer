@@ -61,14 +61,28 @@
     <Folder Include="Properties" />
     <Folder Include="dbo\" />
     <Folder Include="dbo\Tables\" />
+    <Folder Include="Snapshots" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="dbo\Tables\Student.sql" />
-    <Build Include="dbo\Tables\Course.sql" />
-    <Build Include="dbo\Tables\Classroom.sql" />
-    <Build Include="dbo\Tables\CourseStudent.sql" />
-    <Build Include="dbo\Tables\ClassroomCourse.sql" />
     <Build Include="dbo\Tables\HelpType.sql" />
     <Build Include="dbo\Tables\Lawyer.sql" />
+    <Build Include="dbo\Tables\Order.sql" />
+    <Build Include="dbo\Tables\Cart.sql" />
+    <Build Include="dbo\Tables\LawyerHelptype.sql" />
+    <Build Include="dbo\Tables\LawyerTimeSlot.sql" />
+    <Build Include="dbo\Tables\AspNetUsers.sql" />
+    <Build Include="dbo\Tables\AspNetUserRoles.sql" />
+    <Build Include="dbo\Tables\AspNetUserLogins.sql" />
+    <Build Include="dbo\Tables\AspNetUserClaims.sql" />
+    <Build Include="dbo\Tables\AspNetRoles.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="dbo\Script.Lawyers.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="DBLawDoggs.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Snapshots\DBLawDoggs_20171117_10-56-09.dacpac" />
   </ItemGroup>
 </Project>

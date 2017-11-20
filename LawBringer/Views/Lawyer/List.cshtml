@@ -3,16 +3,18 @@
     ViewBag.Title = "List";
 }
 
-<h2>Lawyers</h2>
+<h1 class="text-center">Lawyer Group</h1>
 <div class="row">
     @foreach (var lawyer in Model)
     {
-        <div class="col-xs-4">
-            <div class="well">
-                <h2>@lawyer.Name</h2>
-                <img class=" img-responsive" src="@lawyer.Image" />
-            </div>
-            @Html.ActionLink("Find Out more", "Index", new { ID = lawyer.ID })
+        <div class="col-xs-4 panel panel-default" style="background:inherit">         
+                <div class="form-group">
+                    <h2>@lawyer.Name</h2>
+                    <img class=" img-responsive img-circle center-block" src="@lawyer.Image"  />
+                </div>
+                    <div class="form-group">
+                        @Html.ActionLink("Find Out more", "Index", new { ID = lawyer.Id }, new { @class = "btn btn-warning btn-lg btn-block" })
+                    </div>             
         </div>
     }
 </div>

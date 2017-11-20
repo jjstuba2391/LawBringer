@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "SignIn";
+}
+<h2>SignIn</h2>
+<h2 class="text-center">Register</h2>
+@if (ViewBag.Error != null)
+{
+    foreach (string s in (IEnumerable<string>)ViewBag.Error)
+
+    {
+
+        <div>Error: @s</div>
+
+    }
+}
+@using (Html.BeginForm())
+{
+    <div class="well text-center">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input name="username" type="text" />
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input name="password" type="password" />
+        </div>
+        <div>
+            <label for="staySignedIn"> Stay Signed In</label>
+            <input name="staySignedIn" type="checkbox" />
+        </div>
+        <input type="submit" class="btn btn-warning btn-lg" value="Log In" />
+    </div>
+    @Html.ActionLink("Recover Your Password", "ForgotPassword")
+}
