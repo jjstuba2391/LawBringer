@@ -290,7 +290,10 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DBLawDoggsModels.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="Images\79102-200.png" />
     <Content Include="Images\dog-graphics-bulldog-151127.gif" />
+    <Content Include="Images\Home-BG2.png" />
+    <Content Include="Images\Home-Icon-LearnMore.png" />
     <Content Include="Images\Lawyer1.jpg" />
     <Content Include="Images\Lawyer2.jpg" />
     <Content Include="Images\Lawyer3.jpg" />

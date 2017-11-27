@@ -1,28 +1,31 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-<div class="container">
-    <div class="jumbotron text-center" id="jumbo1"  >
-        <div class="row">
-            <div class="col">
-                <h1>LawDoggs</h1>
-                <p class="lead"> Here to help, because the law can be "RUFF"</p>
-                <p><a href=/Lawyer/List class="btn btn-warning btn-lg">Learn more &raquo;</a></p>
-            </div>          
-                <img src="~/Images/dog-graphics-bulldog-151127.gif" />          
-          </div>
+
+<div class="container-fluid" style="background-size: cover; background-image: url('../../Images/Home-BG2.png'); height: 500px;">
+    <div class="jumbotron" style="background-color:rgba(238,238,238,0);color:rgb(255,255,255);margin-top:40px;">
+        <h1 style="font-family:Merriweather, serif;">Law Doggs </h1>
+        <p style="font-family:Merriweather, serif;">Because the Law can be "RUFF"</p>
+        <p><a class="btn btn-warning btn-lg visible-md-block visible-lg-block" role="button" href=/Lawyer/List style="height:48px;font-size:1em;font-weight:normal;font-family:Merriweather, serif;width:30%;">Contact Your Lawyer Now</a></p>
+        <img src="~/Images/dog-graphics-bulldog-151127.gif"/>
+    </div>
+</div>
+<div class="row" id="rowhome">
+    <div class="col-md-6 text-center" id="homecol" >
+        <div class="well" id="well2"  style="background-image: linear-gradient(to bottom, #1C1C1C 10%, #494949 90%);">
+            <h2 style="color:rgb(255,255,255);">Learn More about us!</h2>
+            <p style="color:rgb(255,255,255);">Its important to learn about where we started</p>
+            <p><a href=/Home/About/><img src="~/Images/Home-Icon-LearnMore.png" style="height: 110px;" /></a></p>
+        
         </div>
-   
-</div>
-<div class="row">
-    <div class="col-md-4 pull-left">
-        <h2>Learn More about us!</h2>
-        <p>Its important to learn about where we started</p>
-        <p><a class="btn btn-default" href=/Home/About/>Learn more &raquo;</a></p>
     </div>
-    <div class="col-md-4 pull-right text-right">
-        <h2>See our Reviews</h2>
-        <p>Check out the reviews from our current users</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    <div class="col-md-6  text-center" id="homecol">
+        <div class="well" id="well1" style="background-image: linear-gradient(to bottom, #f0ad4e 0%, #eb9316 100%);">
+            <h2 style="color:rgb(255,255,255);">Contact</h2>
+            <p style="color:rgb(255,255,255);">Feel free to contact us with any questions</p>
+            <p><a href=/Home/Contact/><img src="~/Images/79102-200.png" style="height: 110px;"/></a></p>
+        </div>
     </div>
 </div>
+
+

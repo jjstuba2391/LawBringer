@@ -1,8 +1,9 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    color:darkgoldenrod;
-    background-color:black;
+    color: /*rgb(255,255,255);*/ black;
+    background-color:grey;
+    font-family: Merriweather;
 }
 
 
@@ -23,4 +24,25 @@
     background:inherit;
     border: none;
     align-content:center;
+}
+#well2{
+    border:none;
+}
+#well1{
+   
+    border:none;
+}
+#rowhome{
+    margin-right:0px;
+    margin-left:0px;
+}
+#homecol{
+    padding-left:0px;
+    padding-right:0px;
+}
+#registerbody{
+   color:black;
+}
+#DaySelected{
+    color:black;
 }

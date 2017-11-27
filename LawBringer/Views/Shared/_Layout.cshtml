@@ -29,9 +29,9 @@
                         <li>@Html.ActionLink("Sign Out as " + User.Identity.Name, "SignOut" , "Account")</li>
                     }
                     else
-                    {
-                        <li>@Html.ActionLink("Register", "Register", "Account")</li>
-                        <li> @Html.ActionLink("Sign In", "SignIn", "Account")</li>
+                    {                       
+                            <li>@Html.ActionLink("Register", "Register", "Account")</li>
+                            <li> @Html.ActionLink("Sign In", "SignIn", "Account")</li>                     
                     }
                 </ul>
             </div>
@@ -42,6 +42,7 @@
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - LawDoggs ASP.NET Application</p>
+            <p class="copyright">Jacob Stuba Web Development</p>
         </footer>
     </div>
 

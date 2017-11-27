@@ -94,9 +94,10 @@ namespace LawBringer.Controllers
                 LawDoggsEmailService emailService = new LawDoggsEmailService();
                 emailService.SendAsync(new Microsoft.AspNet.Identity.IdentityMessage
                 {
-                    Subject = "Your tracking number Information" + trackingNumber,
+                    Subject = "Your Order Information",
                     Destination = model.ContactEmail,
-                    Body = "Thank you for your support"
+                    Body = "Thank you for your support, here is your order number " + "  " + trackingNumber,
+
                 });
 #endregion
 
