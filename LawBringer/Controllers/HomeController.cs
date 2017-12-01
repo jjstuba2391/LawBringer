@@ -15,7 +15,7 @@ namespace LawBringer.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Fetch a lawyer yourself. We come running";
+            ViewBag.Message = "Fetch a lawyer yourself. We'll come running";
 
             return View();
         }

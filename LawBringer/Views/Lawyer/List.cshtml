@@ -8,9 +8,11 @@
     @foreach (var lawyer in Model)
     {        
             <div class="col-xs-4">
-                 <div class="panel panel-default" style="background:inherit">           
+                <div class="panel panel-default" style=" background-image: linear-gradient(to top, #1C1C1C 6%, #494949 50%);">           
                 <div class="panel-body">
-                    <h2 class="text-center">@lawyer.Name</h2>
+                    <h2 class="text-center"><i class="glyphicon glyphicon-user"></i> @lawyer.Name</h2>
+                    <hr />
+                    <h4 class="text-center"><i class="glyphicon glyphicon-globe"></i> City: @lawyer.City</h4>                   
                     <p><img class=" img-responsive img-circle center-block" src="@lawyer.Image"/></p>
                     @Html.ActionLink("Find Out more", "Index", new { ID = lawyer.Id }, new { @class = "btn btn-warning btn-lg btn-block" })
                 </div>

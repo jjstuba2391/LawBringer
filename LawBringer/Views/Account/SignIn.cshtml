@@ -3,7 +3,7 @@
     ViewBag.Title = "SignIn";
 }
 
-<h2 class="text-center">Sign In</h2>
+<h2 >Sign In</h2>
 @if (ViewBag.Error != null)
 {
     foreach (string s in (IEnumerable<string>)ViewBag.Error)
@@ -17,7 +17,7 @@
 @using (Html.BeginForm())
 {
     <div id="registerbody">
-    <div class="well text-center">
+    <div class="well text-center" id="WellLogin">
         <div class="form-group">
             <label for="username">Username</label>
             <input name="username" type="text" />
@@ -31,8 +31,11 @@
             <input name="staySignedIn" type="checkbox" />
         </div>
         <input type="submit" class="btn btn-warning btn-lg" value="Log In" />
+        <hr />
+        @Html.ActionLink("Recover Your Password", "ForgotPassword")
     </div>
+      
   </div>
-    @Html.ActionLink("Recover Your Password", "ForgotPassword")
+   
 
 }

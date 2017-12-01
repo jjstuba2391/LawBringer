@@ -2,16 +2,17 @@
 @{
     ViewBag.Title = "Index";
 }
-
 <div class="row">
-    <div class="col-xs-12 col-sm-4">
-        <img class=" img-responsive" src="@Model.Image" />
+    <div class="col-xs-12 col-sm-4" id="LawyerWell">
+        <div class="well-lg">
+            <img class=" img-responsive" src="@Model.Image" />
+            <h2>@Model.Name</h2>
+            <h3>@Model.City</h3>
+            <h3>@((Model.Price ?? 0).ToString("C"))</h3>
+        </div>
     </div>
     <div class="col-xs-12 col-sm-8">
-        <div class="well">
-            <h2>@Model.Name</h2>
-            <p>@Model.City</p>
-            <p>@((Model.Price ?? 0).ToString("C"))</p>
+        <div class="well">                             
             @using (Html.BeginForm("Index", "Lawyer", FormMethod.Post, new { @class = "myClass" }))
             {
                 @Html.HiddenFor(m => m.Name)
