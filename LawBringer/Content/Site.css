@@ -63,3 +63,12 @@
 #WellLogin {
     max-width:400px;
 }
+#LawyerWell {
+    background-image: linear-gradient(to bottom, #f0ad4e 0%, #eb9316 100%)
+}
+.hero{
+    font-size: 6em;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}

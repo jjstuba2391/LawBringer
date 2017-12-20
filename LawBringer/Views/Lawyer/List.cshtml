@@ -3,12 +3,13 @@
     ViewBag.Title = "List";
 }
 
-<h1 class="text-center">Lawyer Group</h1>
+<h1 class="text-center hero">Lawyer Group</h1>
+<hr />
 <div class="row">
     @foreach (var lawyer in Model)
     {        
             <div class="col-xs-4">
-                <div class="panel panel-default" style=" background-image: linear-gradient(to top, #1C1C1C 6%, #494949 50%);">           
+                <div class="panel panel-default" style=" background-image: linear-gradient(to bottom, #f1e767 0%,#feb645 100%);">           
                 <div class="panel-body">
                     <h2 class="text-center"><i class="glyphicon glyphicon-user"></i> @lawyer.Name</h2>
                     <hr />
